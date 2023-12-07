@@ -116,6 +116,43 @@ def deregister_client():
         app_log.error(traceback.format_exc())
 
 
+def is_app_name_available(app_name):
+    app_root_dir = os.path.join(CURRENT_PATH, 'app', app_name)
+    return not os.path.exists(app_root_dir)
+
+def create_app(app_name):
+    # Define the directory structure
+    if not is_app_name_available(app_name):
+        print(f"Error: '{app_name}' already exists.")
+        return
+
+    app_root_dir = os.path.join(CURRENT_PATH, 'app', app_name)
+    inner_dir = os.path.join(app_root_dir, app_name)
+
+    # Create the directories
+    os.makedirs(inner_dir, exist_ok=True)
+
+    # Create __init__.py
+    init_file_path = os.path.join(inner_dir, '__init__.py')
+    with open(init_file_path, 'w') as init_file:
+        pass  # Empty __init__.py file
+
+    # Create routes.py
+    routes_file_path = os.path.join(inner_dir, 'routes.py')
+    with open(routes_file_path, 'w') as routes_file:
+        routes_file.write(
+            f"from flask import Blueprint, jsonify\n"
+            f"from flask_jwt_extended import jwt_required\n\n"
+            f"{app_name}_bp = Blueprint('{app_name}', __name__)\n\n"
+            f"@{app_name}_bp.route('/ping')\n"
+            f"@jwt_required()\n"
+            f"def ping():\n"
+            f"    return jsonify({{'message': f'You are reaching {app_name} Application.'}})\n"
+        )
+
+    print(f"App '{app_name}' created successfully at {app_root_dir}")
+
+
 def register_client():
     try:
         clientid = config_obj['API_SETTING']['clientid']
@@ -154,6 +191,7 @@ if __name__ == "__main__":
     # Register App command
     parser.add_argument('--register-app', action='store_true', help="Register an app")
     parser.add_argument('--deregister-app', action='store_true', help="De-Register an app")
+    parser.add_argument('--create-app', action='store_true', help="Create an app")
     # Add the --name argument
     parser.add_argument('--name', help="Specify the app name")
 
@@ -187,5 +225,10 @@ if __name__ == "__main__":
     elif args.deregister_client:
         app_log.info(('De-registering client...'))
         deregister_client()
+    elif args.create_app:
+        if args.name:
+            create_app(args.name)
+        else:
+            print("No app name provided")
     else:
         print("No valid command provided.")

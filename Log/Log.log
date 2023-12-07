@@ -1,3 +1,8 @@
 2023-12-07 11:40:30,088  register.py 167 [INFO] args: Namespace(register_app=False, deregister_app=False, name=None, register_client=False, deregister_client=False)
 2023-12-07 11:41:28,534  register.py 167 [INFO] args: Namespace(register_app=False, deregister_app=False, name=None, register_client=True, deregister_client=False)
 2023-12-07 11:41:28,535  register.py 185 [INFO] Registering client...
+2023-12-07 12:47:02,203  register.py 205 [INFO] args: Namespace(register_app=False, deregister_app=False, create_app=True, name='demo', register_client=False, deregister_client=False)
+2023-12-07 12:47:18,341  register.py 205 [INFO] args: Namespace(register_app=False, deregister_app=False, create_app=True, name='demo', register_client=False, deregister_client=False)
+2023-12-07 12:47:31,184  register.py 205 [INFO] args: Namespace(register_app=False, deregister_app=False, create_app=True, name='demo', register_client=False, deregister_client=False)
+2023-12-07 12:48:05,398  register.py 205 [INFO] args: Namespace(register_app=True, deregister_app=False, create_app=False, name='demo', register_client=False, deregister_client=False)
+2023-12-07 12:48:05,399  register.py 210 [INFO] Registering app...

@@ -34,6 +34,12 @@ def not_found_error(error):
 # Import and register blueprints
 
 
+# Start blueprint: demo
+from app.demo.demo.routes import demo_bp
+app.register_blueprint(demo_bp, url_prefix=f'/featureapi/v1/demo')
+# End blueprint: demo
+
+
 # Start blueprint: featuresecurity
 from app.featuresecurity.featuresecurity.routes import featuresecurity_bp
 app.register_blueprint(featuresecurity_bp, url_prefix=f'/featureapi/v1/featuresecurity')
