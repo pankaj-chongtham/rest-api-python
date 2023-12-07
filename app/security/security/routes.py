@@ -6,7 +6,7 @@ from datetime import timedelta
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 
-featuresecurity_bp = Blueprint('securitytoken', __name__)
+security_bp = Blueprint('security', __name__)
 
 if getattr(sys, 'frozen', False):
     # we are running in a bundle
@@ -37,7 +37,7 @@ def check_clientsecret(clientid):
     return result
 
 
-@featuresecurity_bp.route('/token')
+@security_bp.route('/token')
 def token():
     client_id = request.headers.get('clientid')
     client_secret = request.headers.get('clientsecret')
@@ -56,7 +56,7 @@ def token():
         return jsonify({"Message": "Invalid Client."})
 
 
-@featuresecurity_bp.route('/ping')
+@security_bp.route('/ping')
 @jwt_required()
 def ping():
-    return jsonify({"message": "You are reaching 'securitytoken' Application."})
+    return jsonify({"message": "You are reaching security Application."})
