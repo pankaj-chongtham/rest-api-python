@@ -16,6 +16,20 @@ else:
     CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
 CURRENT_PATH = os.path.normpath(os.path.join(CURRENT_PATH, '..', '..', '..'))
 
+# CONFIG FILE
+config_filename = os.path.join(CURRENT_PATH, 'config.ini')
+config_obj = configparser.ConfigParser()
+config_obj.read(config_filename)
+
+jwt_enabled = config_obj.getboolean('API_SETTING', 'jwtenabled')
+
+# Wrapper function that conditionally applies jwt_required()
+def conditional_jwt_required(func):
+    if jwt_enabled:
+        return jwt_required()(func)
+    else:
+        return func
+
 
 def check_clientid_exists(clientid):
     sqlite3_conn = sqlite3.connect(os.path.join(CURRENT_PATH, 'feature.db'))
@@ -57,6 +71,6 @@ def token():
 
 
 @security_bp.route('/ping')
-@jwt_required()
+@conditional_jwt_required
 def ping():
     return jsonify({"message": "You are reaching security Application."})

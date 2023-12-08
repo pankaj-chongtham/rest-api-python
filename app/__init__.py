@@ -33,7 +33,6 @@ def not_found_error(error):
 
 # Import and register blueprints
 
-
 # Start blueprint: security
 from app.security.security.routes import security_bp
 app.register_blueprint(security_bp, url_prefix=f'/featureapi/v1/security')

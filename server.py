@@ -21,7 +21,7 @@ config_filename = os.path.join(CURRENT_PATH, 'config.ini')
 config_obj = configparser.ConfigParser()
 config_obj.read(config_filename)
 
-jwt_token_required = config_obj['API_SETTING']['jwttoken']
+jwtenabled = config_obj.getboolean('API_SETTING', 'jwtenabled')
 
 @app.route(f'{BASE_PREFIX}/version')
 def ping():
