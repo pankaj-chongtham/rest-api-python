@@ -131,7 +131,7 @@ Alias:**_featureapi_**
 
 Application pool:**_FEATUREAPI_**
 
-Physical path:**_{drive}/Program Files (x86)/RamcoUtilities/featureapi_**
+Physical path:**_{drive}/Program Files (x86)/Utilities/featureapi_**
 
 Select: **_Enable Preload_**
 
@@ -147,7 +147,7 @@ arguments:**_-m waitress --port %HTTP_PLATFORM_PORT% server:app_**
 
 processesPerApplication:**_10_**
 
-processPath:**_{drive}\Program Files(x86)\RamcoUtilities\featureapi\env\Scripts\python.exe_**
+processPath:**_{drive}\Program Files(x86)\Utilities\featureapi\env\Scripts\python.exe_**
 
 **Click** again on 'featureapi' application
 
@@ -156,7 +156,7 @@ processPath:**_{drive}\Program Files(x86)\RamcoUtilities\featureapi\env\Scripts\
 **Double-Click** on 'featureapiHttpPlatformHandler'
 
 Modify the Settings as:
-Executable (optional):**_{drive}\Program Files (x86)\RamcoUtilities\featureapi\env\Scripts\python.exe_**
+Executable (optional):**_{drive}\Program Files (x86)\Utilities\featureapi\env\Scripts\python.exe_**
 
 **Click** on 'Request Restrictions'
 
